@@ -10,6 +10,17 @@ const typeDefs = gql`
     libraries: [Library]!
   }
 
+  type Mutation {
+    addUser(userName: String!, age: Int!): MutationResponse!
+    addBook(userId: Int!, bookName: String!): MutationResponse!
+    addLibrary(libraryName: String!): MutationResponse!
+  }
+
+  type MutationResponse {
+    status: Int!
+    message: String!
+  }
+
   type User {
     userId: Int!
     userName: String!
@@ -31,16 +42,3 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
-
-/* type Mutation {
-    addLibrary(libraryName: String!): MutationResponse!
-    addUser(username: String! age: Int!) MutationResponse!
-    addBook(bookName: String! libraryId: Int! bookName: String!): MutationResponse!
-  }
-
-  type MutationResponse {
-      status: Int!
-      message: String!
-  }
-
- */
