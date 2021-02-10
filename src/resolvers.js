@@ -1,4 +1,4 @@
-const { users, books } = require('./models/data');
+const { users, books, libraries } = require('./models/data');
 
 const resolvers = {
   Query: {
@@ -11,14 +11,19 @@ const resolvers = {
       return books.find((book) => book.bookId === bookId);
     },
     books: () => books,
+
+    library: (_, { libraryId }) => {
+      return libraries.find((library) => library.libraryId === libraryId);
+    },
+    libraries: () => libraries,
   },
 
   User: {
     books: (global) => {
       const filteredBooks = [];
 
-      for (let userBook of global.books) {
-        for (let book of books) {
+      for (let book of books) {
+        for (let userBook of global.books) {
           if (book.bookId === userBook) {
             filteredBooks.push(book);
           }
@@ -31,14 +36,31 @@ const resolvers = {
 
   Book: {
     author: (global) => {
-      let foundUser;
+      let foundUser = {};
 
       for (let user of users) {
         if (user.userId === global.author) {
           foundUser = user;
         }
       }
+
       return foundUser;
+    },
+  },
+
+  Library: {
+    books: (global) => {
+      let filteredBooks = [];
+
+      for (let book of books) {
+        for (let libBookId of global.books) {
+          if (book.bookId === libBookId) {
+            filteredBooks.push(book);
+          }
+        }
+      }
+
+      return filteredBooks;
     },
   },
 };

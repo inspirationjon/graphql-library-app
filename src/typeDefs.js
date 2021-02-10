@@ -6,6 +6,15 @@ const typeDefs = gql`
     users: [User!]!
     book(bookId: Int!): Book!
     books: [Book!]!
+    library(libraryId: Int!): Library!
+    libraries: [Library]!
+  }
+
+  type User {
+    userId: Int!
+    userName: String!
+    age: Int!
+    books: [Book!]!
   }
 
   type Book {
@@ -14,10 +23,9 @@ const typeDefs = gql`
     author: User!
   }
 
-  type User {
-    userId: Int!
-    userName: String!
-    age: Int!
+  type Library {
+    libraryId: Int!
+    libraryName: String!
     books: [Book!]!
   }
 `;
@@ -35,10 +43,4 @@ module.exports = typeDefs;
       message: String!
   }
 
-  type Library {
-      libraryId: String!
-      libraryName: String!
-      books: [Book!]!
-  } */
-/*   libraries: [Library]!
-  library(libraryId: String!): Library! */
+ */
