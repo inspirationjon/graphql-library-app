@@ -36,7 +36,7 @@ const resolvers = {
       };
     },
 
-    addBook: (_, { userId, bookNamec }) => {
+    addBook: (_, { userId, bookName }) => {
       const newBook = {
         bookId: books.length + 1,
         bookName,
