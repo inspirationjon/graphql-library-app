@@ -36,9 +36,9 @@ const resolvers = {
       };
     },
 
-    addBook: (_, { userId, bookName }) => {
+    addBook: (_, { userId, bookNamec }) => {
       const newBook = {
-        bookId: books + 1,
+        bookId: books.length + 1,
         bookName,
         author: userId,
       };
